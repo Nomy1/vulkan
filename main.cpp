@@ -9,11 +9,10 @@
 
 #include "VulkanRenderer.h"
 
-GLFWwindow* window;
-VulkanRenderer vulkanRenderer;
-
 int main()
 {
+	GLFWwindow* window;
+
 	{// create and init window
 		int initSuccess = glfwInit();
 		if (initSuccess == GLFW_FALSE)
@@ -29,8 +28,10 @@ int main()
 		window = glfwCreateWindow(800, 600, "Window Title", nullptr, nullptr);
 	}
 
+	VulkanRenderer vulkanRenderer;
+
 	{// create and init renderer
-		bool initVulkanSuccess = vulkanRenderer.init(window, "Game Name", VK_MAKE_VERSION(1, 0, 0));
+		bool initVulkanSuccess = vulkanRenderer.init(*window, "Game Name", VK_MAKE_VERSION(1, 0, 0));
 		if (!initVulkanSuccess)
 		{
 			return EXIT_FAILURE;
